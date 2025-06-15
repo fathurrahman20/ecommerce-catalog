@@ -23,6 +23,8 @@ const index = ref(1);
 const isLoading = ref(false);
 const productAllowed = ["men's clothing", "women's clothing"];
 const isProductAllowed = () => productAllowed.includes(products.value.category);
+const isMenProduct = () => products.value.category === "men's clothing";
+const isWomenProduct = () => products.value.category === "women's clothing";
 const products = ref<Product>({
   id: 1,
   title: "Product Title",
@@ -76,7 +78,10 @@ const handleNextProduct = () => {
 </script>
 
 <template>
-  <div class="bg-women"></div>
+  <div
+    :class="
+      isMenProduct() ? 'bg-man' : isWomenProduct() ? 'bg-women' : 'bg-default'
+    "></div>
 
   <div class="card-product">
     <div v-if="isLoading" class="loading-wrapper">
@@ -85,7 +90,9 @@ const handleNextProduct = () => {
     <div v-if="!isLoading && isProductAllowed()" class="product-container">
       <img :src="products.image" :alt="products.title" />
       <div class="product-detail">
-        <h2 class="product-title women-title">{{ products.title }}</h2>
+        <h2 :class="isMenProduct() ? 'man-title' : 'woman-title'">
+          {{ products.title }}
+        </h2>
         <div class="product-category-rating">
           <p>{{ products.category }}</p>
           <p>{{ products.rating.rate }}</p>
@@ -96,12 +103,17 @@ const handleNextProduct = () => {
         </div>
         <div class="spacer"></div>
         <hr />
-        <div class="product-price-women">
+        <div
+          :class="isMenProduct() ? 'product-price-man' : 'product-price-women'">
           <p>$ {{ products.price }}</p>
         </div>
         <div class="product-button">
-          <button class="btn-buy-women">Buy Now</button>
-          <button @click="handleNextProduct" class="btn-next-women">
+          <button :class="isMenProduct() ? 'btn-buy-man' : 'btn-buy-women'">
+            Buy Now
+          </button>
+          <button
+            @click="handleNextProduct"
+            :class="isMenProduct() ? 'btn-next-man' : 'btn-next-women'">
             Next Product
           </button>
         </div>
