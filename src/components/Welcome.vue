@@ -17,6 +17,9 @@ import { RouterLink } from "vue-router";
         <li>Dynamic data fetching from the live Fake Store API.</li>
         <li>Interactive navigation to cycle through products.</li>
         <li>A modern, component-based structure using Vue.js.</li>
+        <li>
+          Written in TypeScript for better type safety and developer experience.
+        </li>
       </ul>
 
       <div class="button-wrapper">

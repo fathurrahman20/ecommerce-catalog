@@ -90,7 +90,7 @@ const handleNextProduct = () => {
     <div v-if="!isLoading && isProductAllowed()" class="product-container">
       <img :src="products.image" :alt="products.title" />
       <div class="product-detail">
-        <h2 :class="isMenProduct() ? 'man-title' : 'woman-title'">
+        <h2 :class="isMenProduct() ? 'man-title' : 'women-title'">
           {{ products.title }}
         </h2>
         <div class="product-category-rating">
