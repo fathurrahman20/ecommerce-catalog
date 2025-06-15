@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  --bg-women: #fde2ff;
+  --bg-man: #d6e6ff;
+  --women-main: #720060;
+  --man-main: #002772;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.bg-women {
+  background-color: var(--bg-women);
+  height: 65vh;
+  position: relative;
+}
+.bg-man {
+  background-color: var(--bg-man);
+  height: 65vh;
+  position: relative;
+}
+
+.card-product {
+  min-width: 1000px;
+  min-height: 480px;
+  background-color: white;
+  padding: 50px 56px;
+  display: flex;
+  column-gap: 68px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.product-container {
+  display: flex;
+  column-gap: 68px;
+}
+.card-product img {
+  max-width: 30%;
+  object-fit: contain;
+}
+
+.man-title {
+  color: var(--man-main);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+.women-title {
+  color: var(--women-main);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+
+.product-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-category-rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-description {
+  margin-top: 1px;
+}
+
+.product-price-women {
+  color: var(--women-main);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-top: 0;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.product-button {
+  width: 100%;
+  display: flex;
+  column-gap: 10px;
+}
+.btn-buy-women {
+  background-color: var(--women-main);
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn-buy-man {
+  background-color: var(--man-main);
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn-next-women {
+  background-color: white;
+  width: 100%;
+  color: var(--women-main);
+  border: 3px solid var(--women-main);
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn-next-man {
+  background-color: white;
+  width: 100%;
+  color: var(--man-main);
+  border: 3px solid var(--women-main);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.not-allowed {
+  margin-bottom: 13px;
+  width: 90%;
+  font-size: 20px;
+  font-weight: 400;
+  background-image: url("../sad-face.png");
+  background-position: 50px 30px;
+  background-size: calc(100% - 100px) calc(100% - 60px);
+  background-repeat: no-repeat;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: black;
+}
+
+.overlay-content p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+}
+
+.btn-next-not-allowed {
+  margin-top: 13px;
+  background-color: white;
+  width: 465px;
+  color: #3f3f3f;
+  border: 3px solid black;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.loading-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: black;
+}
+
+.loader {
+  width: 60px;
+  aspect-ratio: 1;
+  border: 15px solid #ddd;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(45deg);
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 15px solid #514b82;
+  animation: l18 2s infinite linear;
+}
+@keyframes l18 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
