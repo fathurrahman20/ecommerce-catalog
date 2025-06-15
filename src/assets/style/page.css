@@ -363,3 +363,52 @@ hr {
   background-color: #2980b9;
   transform: translateY(-2px);
 }
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.circles-wrapper {
+  display: flex;
+  gap: 1px;
+}
+
+.circle {
+  width: 24px;
+  height: 24px;
+}
+
+/* Style untuk lingkaran yang full */
+.circle-filled-women {
+  fill: var(--women-main);
+  width: 24px;
+  height: 24px;
+  stroke-width: 2px;
+}
+
+.circle-filled-man {
+  fill: var(--man-main);
+  width: 24px;
+  height: 24px;
+  stroke-width: 2px;
+}
+
+/* Style untuk lingkaran kosong (outline) */
+.circle-empty-women {
+  fill: none;
+  stroke: var(--women-main);
+  stroke-width: 2px;
+}
+.circle-empty-man {
+  fill: none;
+  stroke: var(--man-main);
+  stroke-width: 2px;
+}

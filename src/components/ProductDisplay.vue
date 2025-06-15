@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import Api from "../api";
+import Rating from "./Rating.vue";
 
 interface Product {
   id: number;
@@ -23,7 +24,7 @@ const index = ref(1);
 const isLoading = ref(false);
 const productAllowed = ["men's clothing", "women's clothing"];
 const isProductAllowed = () => productAllowed.includes(products.value.category);
-const isMenProduct = () => products.value.category === "men's clothing";
+const isManProduct = () => products.value.category === "men's clothing";
 const isWomenProduct = () => products.value.category === "women's clothing";
 const products = ref<Product>({
   id: 1,
@@ -38,15 +39,26 @@ const products = ref<Product>({
   price: 200000,
 });
 
+// Jumlah bintang penuh
+const fullStars = computed(() => Math.floor(products.value.rating.rate));
+
+// Cek apakah ada bintang setengah? (Jika desimalnya > 0)
+const hasHalfStar = computed(() => products.value.rating.rate % 1 > 0);
+
+// Jumlah bintang kosong
+const emptyStars = computed(() => {
+  // 5 - bintang penuh - (1 jika ada bintang setengah, atau 0 jika tidak)
+  return 5 - fullStars.value - (hasHalfStar.value ? 1 : 0);
+});
+
 const fetchProduct = async (id: string | number | string[]) => {
   try {
     isLoading.value = true;
-    const response = await Api.get(`/products/${route.params.id || index}`);
+    const response = await Api.get(`/products/${id}`);
     products.value = response.data;
     isLoading.value = false;
   } catch (error) {
     console.error(error);
-    isLoading.value = false;
   } finally {
     isLoading.value = false;
   }
@@ -80,7 +92,7 @@ const handleNextProduct = () => {
 <template>
   <div
     :class="
-      isMenProduct() ? 'bg-man' : isWomenProduct() ? 'bg-women' : 'bg-default'
+      isManProduct() ? 'bg-man' : isWomenProduct() ? 'bg-women' : 'bg-default'
     "></div>
 
   <div class="card-product">
@@ -90,12 +102,14 @@ const handleNextProduct = () => {
     <div v-if="!isLoading && isProductAllowed()" class="product-container">
       <img :src="products.image" :alt="products.title" />
       <div class="product-detail">
-        <h2 :class="isMenProduct() ? 'man-title' : 'women-title'">
+        <h2 :class="isManProduct() ? 'man-title' : 'women-title'">
           {{ products.title }}
         </h2>
         <div class="product-category-rating">
           <p>{{ products.category }}</p>
-          <p>{{ products.rating.rate }}</p>
+          <Rating
+            :rating="products.rating.rate"
+            :isManProduct="isManProduct()" />
         </div>
         <hr />
         <div class="product-description">
@@ -104,16 +118,16 @@ const handleNextProduct = () => {
         <div class="spacer"></div>
         <hr />
         <div
-          :class="isMenProduct() ? 'product-price-man' : 'product-price-women'">
+          :class="isManProduct() ? 'product-price-man' : 'product-price-women'">
           <p>$ {{ products.price }}</p>
         </div>
         <div class="product-button">
-          <button :class="isMenProduct() ? 'btn-buy-man' : 'btn-buy-women'">
+          <button :class="isManProduct() ? 'btn-buy-man' : 'btn-buy-women'">
             Buy Now
           </button>
           <button
             @click="handleNextProduct"
-            :class="isMenProduct() ? 'btn-next-man' : 'btn-next-women'">
+            :class="isManProduct() ? 'btn-next-man' : 'btn-next-women'">
             Next Product
           </button>
         </div>
