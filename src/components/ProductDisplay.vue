@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from "vue-router";
 import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import Api from "../api";
 import Rating from "./Rating.vue";
 
@@ -20,7 +20,6 @@ interface Product {
 const route = useRoute();
 const router = useRouter();
 
-const index = ref(1);
 const isLoading = ref(false);
 const productAllowed = ["men's clothing", "women's clothing"];
 const isProductAllowed = () => productAllowed.includes(products.value.category);
@@ -94,11 +93,10 @@ const handleNextProduct = () => {
     :class="
       isManProduct() ? 'bg-man' : isWomenProduct() ? 'bg-women' : 'bg-default'
     "></div>
-
-  <div class="card-product">
-    <div v-if="isLoading" class="loading-wrapper">
-      <div class="loader"></div>
-    </div>
+  <div v-if="isLoading" class="loading-wrapper">
+    <div class="loader"></div>
+  </div>
+  <div v-if="!isLoading" class="card-product">
     <div v-if="!isLoading && isProductAllowed()" class="product-container">
       <img :src="products.image" :alt="products.title" />
       <div class="product-detail">

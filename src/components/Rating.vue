@@ -17,7 +17,7 @@ const roundedRating = computed(() => Math.round(props.rating));
 
 <template>
   <div class="rating-container">
-    <span class="rating-text">{{ props.rating.toFixed(1) }}/5</span>
+    <p class="rating-text">{{ props.rating.toFixed(1) }}/5</p>
 
     <div class="circles-wrapper">
       <span v-for="circle in 5" :key="circle">
