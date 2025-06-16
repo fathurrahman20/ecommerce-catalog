@@ -17,23 +17,37 @@
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
+.bg-default,
+.bg-man,
+.bg-women {
+  height: 65vh;
+  position: relative;
+}
+
+.bg-default::before,
+.bg-man::before,
+.bg-women::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../bg-pattern.svg");
+  opacity: 50%;
+  z-index: 0;
+}
 
 .bg-women {
   background-color: var(--bg-women);
-  height: 65vh;
-  position: relative;
 }
 
 .bg-man {
   background-color: var(--bg-man);
-  height: 65vh;
-  position: relative;
 }
 
 .bg-default {
   background-color: var(--bg-default);
-  height: 65vh;
-  position: relative;
 }
 
 .card-product {
@@ -422,6 +436,17 @@ hr {
   stroke-width: 2px;
 }
 
+.error-message {
+  text-align: center;
+  color: red;
+  font-size: larger;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 768px) {
   .card-product {
     min-width: auto;
@@ -493,5 +518,9 @@ hr {
 
   .btn-next-not-allowed {
     width: 70%;
+  }
+
+  .error-message {
+    font-size: small;
   }
 }

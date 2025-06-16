@@ -4,7 +4,7 @@ import { computed } from "vue";
 const props = defineProps({
   rating: {
     type: Number,
-    required: true,
+    required: false,
   },
   isManProduct: {
     type: Boolean,
@@ -12,15 +12,21 @@ const props = defineProps({
   },
 });
 
-const roundedRating = computed(() => Math.round(props.rating));
+const roundedRating = computed(() => {
+  if (props?.rating) {
+    return Math.round(props.rating);
+  } else {
+    return 0;
+  }
+});
 </script>
 
 <template>
   <div class="rating-container">
-    <p class="rating-text">{{ props.rating.toFixed(1) }}/5</p>
+    <p class="rating-text">{{ props?.rating?.toFixed(1) }}/5</p>
 
     <div class="circles-wrapper">
-      <span v-for="circle in 5" :key="circle">
+      <span v-for="(circle, index) in 5" :key="index">
         <svg
           v-if="circle <= roundedRating"
           :class="
